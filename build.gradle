@@ -1,0 +1,35 @@
+buildscript {
+    ext {   // build.gradle에서 사용할 전역변수 설정
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {  // 각종 의존성(리이브러리) 들을 어떤 원격 저장소에서 받을지
+        mavenCentral() // 복잡, 예전부터 사용
+        jcenter() // 간단
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 자바와 스프링부트를 사용하기 위해서 항상 추가
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링부트 의존성 관리
+
+group = 'com.example.boot_aws'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
